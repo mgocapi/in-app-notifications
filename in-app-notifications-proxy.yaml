@@ -1,9 +1,9 @@
 ---
 swagger: "2.0"
 info:
-  description: This proxy api returns an available list of in-app notification configs filtered by country and sourceApp
+  description: This proxy api returns an available list of in-app notifications configs filtered by country and sourceApp
   version: 1.0.0
-  title: CAPI In-App Notification Config API
+  title: CAPI In-App Notifications Config API
   contact:
     email: mgocapi@gmail.com
   license:
