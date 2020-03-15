@@ -82,3 +82,7 @@ definitions:
         type: string
         description: name of the flow
         example: HOME/SENDMONEY/BILLPAY
+      relatedFeatureToggleSwitchName:
+        type: string
+        description: name of the feature toggle switch related to this notification
+        example: toggle-referralProgram/toggle-fastSend
