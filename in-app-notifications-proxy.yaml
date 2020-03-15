@@ -9,69 +9,10 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-host: virtserver.swaggerhub.com
-basePath: /mgocapi/InAppNotificationConfigProxy/1.0.0
+host: consumerapi.moneygram.com
+basePath: /services/capi/api/v1/config/inAppNotifications
 schemes:
 - https
-paths:
-  /config/inAppNotification:
-    get:
-      summary: retrieve the in-app notification config
-      description: To retrieve country based in-app notification confi.
-      operationId: getInAppNotificationConfig
-      produces:
-      - application/json
-      parameters:
-      - name: clientKey
-        in: header
-        required: true
-        type: string
-      - name: locale-header
-        in: header
-        required: true
-        type: string
-      responses:
-        "200":
-          description: a list of in-app notification configs available for the given country and sourceApp indicated by the locale-header and clientkey
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/InAppNotificationConfig'
-        "400":
-          description: bad request
-        "500":
-          description: internal error, need to include downstream service error if present
-definitions:
-  InAppNotificationConfig:
-    type: object
-    properties:
-      name:
-        type: string
-        example: referralSenderPromoPending
-      priority:
-        type: integer
-        example: 0
-        description: 0 being the highest priority
-      logInRequired:
-        type: boolean
-        example: true
-        description: this indicates whether the notification can be presented before or after user logs in
-      allowNext:
-        type: boolean
-        example: false
-        description: this indicates whether a lower priority notification should be allowed to show after this one
-      blocking:
-        type: boolean
-        example: true
-        description: this indicates whether the notification requires user action to dismiss
-      displayPolicy:
-        type: string
-        example: ONCE/ALWAYS
-        description: this will be used by application to determine the time to live of the notification
-      format:
-        type: string
-        example: TOAST/POPUP
-        description: this defines the format of notification
 parameters:
   clientKeyParam:
     name: clientKey
@@ -83,3 +24,61 @@ parameters:
     in: header
     required: true
     type: string
+paths:
+  /config/inAppNotification:
+    get:
+      summary: retrieve the in-app notifications config
+      description: To retrieve country based in-app notifications config.
+      operationId: getInAppNotificationsConfig
+      produces:
+      - application/json
+      parameters:
+      - $ref: '#/parameters/clientKeyParam'
+      - $ref: '#/parameters/localHeaderParam'
+      responses:
+        "200":
+          description: a list of in-app notifications configs available for the given country and sourceApp derived from the locale-header and clientkey
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/InAppNotificationsConfig'
+        "400":
+          description: bad request
+        "500":
+          description: internal error, need to include downstream service error if present
+definitions:
+  InAppNotificationsConfig:
+    type: object
+    properties:
+      name:
+        type: string
+        description: name of the notification
+        example: referralSenderPromoReminder
+      priority:
+        type: integer
+        description: 0 being the highest priority
+        example: 0
+      authRequired:
+        type: boolean
+        description: this indicates whether the notification can be returned based on the presence of the token
+        example: true
+      allowNext:
+        type: boolean
+        description: this indicates whether a lower priority notification should be allowed to show after this one
+        example: false
+      blocking:
+        type: boolean
+        description: this indicates whether the notification requires user action to dismiss
+        example: true        
+      displayPolicy:
+        type: string
+        description: this will be used by application to determine the time to live of the notification
+        example: ONCE/ALWAYS        
+      format:
+        type: string
+        description: this defines the format of notification
+        example: TOAST/POPUP        
+      epic:
+        type: string
+        description: name of the flow
+        example: HOME/SENDMONEY/BILLPAY
