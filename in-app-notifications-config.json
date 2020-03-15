@@ -1,0 +1,50 @@
+[
+  {
+    "name": "referralSenderPromoReminder",
+    "priority": 0,
+    "authRequired": true,
+    "allowNext": false,
+    "blocking": true,
+    "displayPolicy": "ALWAYS",
+    "format": "POPUP",
+    "epic": "HOME",
+    "relatedFeatureToggleSwitchName": "toggle-referralProgram",
+    "souceApp":"ALL"
+  },
+  {
+    "name": "fastSendDepositReminder",
+    "priority": 1,
+    "authRequired": true,
+    "allowNext": false,
+    "blocking": true,
+    "displayPolicy": "ALWAYS",
+    "format": "POPUP",
+    "epic": "HOME",
+    "relatedFeatureToggleSwitchName": "toggle-fastSend",
+    "souceApp":"ALL"
+  },
+  {
+    "name": "referralFeature",
+    "priority": 0,
+    "authRequired": false,
+    "allowNext": false,
+    "blocking": true,
+    "displayPolicy": "ONCE",
+    "format": "POPUP",
+    "epic": "HOME",
+    "relatedFeatureToggleSwitchName": "toggle-referralProgram",
+    "souceApp":"ALL"
+  },
+  {
+    "name": "fastSendFeature",
+    "priority": 1,
+    "authRequired": false,
+    "allowNext": false,
+    "blocking": true,
+    "displayPolicy": "ONCE",
+    "format": "POPUP",
+    "epic": "HOME",
+    "relatedFeatureToggleSwitchName": "toggle-fastSend",
+    "souceApp":"ALL"
+  }
+]
