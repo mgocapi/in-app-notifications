@@ -86,3 +86,7 @@ definitions:
         type: string
         description: name of the feature toggle switch related to this notification
         example: toggle-referralProgram/toggle-fastSend
+      sourceApp:
+        type: string
+        description: notification for specific source app or for all source apps
+        example: ALL/NXTAPP/WEB/FBCB/IOS/ANDROID
