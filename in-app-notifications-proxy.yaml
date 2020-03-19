@@ -25,7 +25,7 @@ parameters:
     required: true
     type: string
 paths:
-  /config/inAppNotification:
+  /notification/inapp:
     get:
       summary: retrieve the in-app notifications config
       description: To retrieve country based in-app notifications config.
