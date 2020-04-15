@@ -4,47 +4,51 @@
     "priority": 0,
     "authRequired": true,
     "allowNext": false,
-    "blocking": true,
+    "acknowledgementRequired": true,
     "displayPolicy": "ALWAYS",
     "format": "POPUP",
     "epic": "HOME",
     "relatedFeatureToggleSwitchName": "toggle-referralProgram",
-    "souceApp":"ALL"
+    "souceApp":"ALL",
+    "contentUrl":"epic url/lang"
   },
   {
     "name": "fastSendDepositReminder",
     "priority": 1,
     "authRequired": true,
     "allowNext": false,
-    "blocking": true,
+    "acknowledgementRequired": true,
     "displayPolicy": "ALWAYS",
     "format": "POPUP",
     "epic": "HOME",
     "relatedFeatureToggleSwitchName": "toggle-fastSend",
-    "souceApp":"ALL"
+    "souceApp":"ALL",
+    "contentUrl":"epic url/lang"
   },
   {
     "name": "referralFeature",
     "priority": 0,
     "authRequired": false,
     "allowNext": false,
-    "blocking": true,
+    "acknowledgementRequired": true,
     "displayPolicy": "ONCE",
     "format": "POPUP",
     "epic": "HOME",
     "relatedFeatureToggleSwitchName": "toggle-referralProgram",
-    "souceApp":"ALL"
+    "souceApp":"ALL",
+    "contentUrl":"epic url/lang"
   },
   {
     "name": "fastSendFeature",
     "priority": 1,
     "authRequired": false,
     "allowNext": false,
-    "blocking": true,
+    "acknowledgementRequired": true,
     "displayPolicy": "ONCE",
     "format": "POPUP",
     "epic": "HOME",
     "relatedFeatureToggleSwitchName": "toggle-fastSend",
-    "souceApp":"ALL"
+    "souceApp":"ALL",
+    "contentUrl":"epic url/lang"
   }
 ]
