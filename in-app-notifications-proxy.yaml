@@ -1,16 +1,16 @@
 ---
 swagger: "2.0"
 info:
-  description: This proxy api returns an available list of in-app notifications configs filtered by country and sourceApp
+  description: This proxy api returns an available list of in-app notifications available by country and sourceApp
   version: 1.0.0
-  title: CAPI In-App Notifications Config API
+  title: CAPI In-App Notifications api
   contact:
     email: mgocapi@gmail.com
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 host: consumerapi.moneygram.com
-basePath: /services/capi/api/v1/config/inAppNotifications
+basePath: /services/capi/api/v1
 schemes:
 - https
 parameters:
@@ -27,9 +27,9 @@ parameters:
 paths:
   /notification/inapp:
     get:
-      summary: retrieve the in-app notifications config
-      description: To retrieve country based in-app notifications config.
-      operationId: getInAppNotificationsConfig
+      summary: retrieve the in-app notifications
+      description: To retrieve country based in-app notifications
+      operationId: getInAppNotifications
       produces:
       - application/json
       parameters:
@@ -37,17 +37,17 @@ paths:
       - $ref: '#/parameters/localHeaderParam'
       responses:
         "200":
-          description: a list of in-app notifications configs available for the given country and sourceApp derived from the locale-header and clientkey
+          description: a list of in-app notifications available for the given country and sourceApp derived from the locale-header and clientkey
           schema:
             type: array
             items:
-              $ref: '#/definitions/InAppNotificationsConfig'
+              $ref: '#/definitions/InAppNotification'
         "400":
           description: bad request
         "500":
           description: internal error, need to include downstream service error if present
 definitions:
-  InAppNotificationsConfig:
+  InAppNotification:
     type: object
     properties:
       name:
@@ -58,17 +58,13 @@ definitions:
         type: integer
         description: 0 being the highest priority
         example: 0
-      authRequired:
-        type: boolean
-        description: this indicates whether the notification can be returned based on the presence of the token
-        example: true
       allowNext:
         type: boolean
         description: this indicates whether a lower priority notification should be allowed to show after this one
         example: false
-      blocking:
+      acknowledgementRequired:
         type: boolean
-        description: this indicates whether the notification requires user action to dismiss
+        description: this indicates whether the notification requires the user acknowledgement
         example: true        
       displayPolicy:
         type: string
@@ -82,11 +78,3 @@ definitions:
         type: string
         description: name of the flow
         example: HOME/SENDMONEY/BILLPAY
-      relatedFeatureToggleSwitchName:
-        type: string
-        description: name of the feature toggle switch related to this notification
-        example: toggle-referralProgram/toggle-fastSend
-      sourceApp:
-        type: string
-        description: notification for specific source app or for all source apps
-        example: ALL/NXTAPP/WEB/FBCB/IOS/ANDROID
