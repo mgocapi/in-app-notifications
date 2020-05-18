@@ -30,12 +30,6 @@ parameters:
     required: true
     type: string
     description: Bearer token
-  langPreferenceParam:
-    name: langPreference
-    in: header
-    required: false
-    type: string
-    description: iso 2 language codes
 paths:
   /notification/inApp:
     get:
@@ -70,16 +64,9 @@ paths:
       - $ref: '#/parameters/clientKeyParam'
       - $ref: '#/parameters/localHeaderParam'
       - $ref: '#/parameters/authParam'
-      - $ref: '#/parameters/langPreferenceParam'
-      - in: body
-        name: profileId
-        description: consumer profile id
-        required: true
-        schema:
-          type: string
       responses:
         "200":
-          description: a list of in-app notifications available for the given country and sourceApp derived from the locale-header and clientkey
+          description: a list of in-app notifications available for the given country and sourceApp derived from the locale-header and clientkey, we can also use the profile lang preference to provide the correct localized content
           schema:
             type: array
             items:
