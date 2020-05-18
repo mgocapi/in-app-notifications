@@ -15,7 +15,7 @@ schemes:
 - https
 parameters:
   clientKeyParam:
-    name: clientKey
+    name: clientkey
     in: header
     required: true
     type: string
@@ -24,8 +24,20 @@ parameters:
     in: header
     required: true
     type: string
+  authParam:
+    name: auth
+    in: header
+    required: false
+    type: string
+    description: Bearer token
+  langPreferenceParam:
+    name: langPreference
+    in: header
+    required: false
+    type: string
+    description: iso 2 language codes
 paths:
-  /notification/inapp:
+  /notification/inApp:
     get:
       summary: retrieve the in-app notifications
       description: To retrieve country based in-app notifications
@@ -35,6 +47,8 @@ paths:
       parameters:
       - $ref: '#/parameters/clientKeyParam'
       - $ref: '#/parameters/localHeaderParam'
+      - $ref: '#/parameters/authParam'
+      - $ref: '#/parameters/langPreferenceParam'
       responses:
         "200":
           description: a list of in-app notifications available for the given country and sourceApp derived from the locale-header and clientkey
@@ -69,12 +83,30 @@ definitions:
       displayPolicy:
         type: string
         description: this will be used by application to determine the time to live of the notification
-        example: ONCE/ALWAYS        
+        enum: [ONCE,ALWAYS]        
       format:
         type: string
         description: this defines the format of notification
-        example: TOAST/POPUP        
+        enum: [TOAST,POPUP]        
       epic:
         type: string
         description: name of the flow
-        example: HOME/SENDMONEY/BILLPAY
+        enum: [AUTHHOME,UNAUTHHOME,SENDMONEY,BILLPAY,RECEIVEMONEY]
+      contentUrl:
+        type: string
+        description: url to the notification html content
+        example: full s3 bucket path
+  InAppNotificationConfiguration:
+    allOf: 
+      - $ref: '#/definitions/InAppNotification'
+      - type: object
+        properties:
+          relatedFeatureToggleSwitchName:
+            type: string
+            description: name of the feature toggle switch, this is to be used to find out whether the feature in turned on/off in country config
+            example: toggle-referralProgram
+          sourceApp:
+            type: string
+            description: POE type
+            enum: [WEB,IOS,ANDROID]
+    
