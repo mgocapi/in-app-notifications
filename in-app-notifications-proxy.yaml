@@ -27,7 +27,7 @@ parameters:
   authParam:
     name: auth
     in: header
-    required: true
+    required: false
     type: string
     description: Bearer token
 paths:
@@ -41,32 +41,10 @@ paths:
       parameters:
       - $ref: '#/parameters/clientKeyParam'
       - $ref: '#/parameters/localHeaderParam'
-      responses:
-        "200":
-          description: a list of in-app notifications available for the given country and sourceApp derived from the locale-header and clientkey
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/InAppNotification'
-        "400":
-          description: bad request
-        "500":
-          description: internal error, need to include downstream service error if present
-    post:
-      summary: retrieve authed in-app notifications
-      description: retrieve country based authed in-app notifications
-      operationId: getAuthedInAppNotifications
-      consumes:
-      - application/json      
-      produces:
-      - application/json
-      parameters:
-      - $ref: '#/parameters/clientKeyParam'
-      - $ref: '#/parameters/localHeaderParam'
       - $ref: '#/parameters/authParam'
       responses:
         "200":
-          description: a list of in-app notifications available for the given country and sourceApp derived from the locale-header and clientkey, we can also use the profile lang preference to provide the correct localized content
+          description: a list of in-app notifications available for the given country and sourceApp derived from the locale-header and clientkey
           schema:
             type: array
             items:
